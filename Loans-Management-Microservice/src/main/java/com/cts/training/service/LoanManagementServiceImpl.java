@@ -137,13 +137,17 @@ public class LoanManagementServiceImpl implements LoanManagementService {
 			}
 		}
 	}
-
+	/**
+	 * Saves Loan Application to Database
+	 */
 	@Override
 	public ResponseEntity<String> applyLoan(LoanApplication loanApplication) {
 		loanApplicationRepo.save(loanApplication);
 		return new ResponseEntity<>("Application Saved", HttpStatus.ACCEPTED);
 	}
-	
+	/**
+	 * Returns list of loans taken by customer, given customer id
+	 */
 	@Override
 	public ArrayList<LoanApplication> viewCustLoan(int custId) {
 		ArrayList<LoanApplication> list=new ArrayList<>();
@@ -156,7 +160,9 @@ public class LoanManagementServiceImpl implements LoanManagementService {
 		
 		return list;
 	}
-	
+	/**
+	 * Returns all applications that have status either Accepted/Rejected
+	 */
 	@Override
 	public ArrayList<LoanApplication> getAll(){
 		ArrayList<LoanApplication> list=new ArrayList<LoanApplication>();
@@ -166,6 +172,9 @@ public class LoanManagementServiceImpl implements LoanManagementService {
 		}
 		return list;
 	}
+	/**
+	 * Given application id, approve loan and add the details to customerloan table
+	 */
 	@Override
 	public ResponseEntity<String> approveLoan(Integer applicationId){
 		
@@ -197,6 +206,9 @@ public class LoanManagementServiceImpl implements LoanManagementService {
 		return new ResponseEntity<>("Loan Application Accepted", HttpStatus.ACCEPTED);
 	
 	}
+	/**
+	 * Given an application id, reject loan and update it in table
+	 */ 
 	@Override
 	public ResponseEntity<String> rejectLoan(Integer applicationId){
 		
